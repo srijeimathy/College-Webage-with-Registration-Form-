@@ -3,6 +3,7 @@ import { BrowserRouter,Routes,Route,Link } from 'react-router-dom';
 import './App.css';
 import About from './About.jsx';
 import Registration from './Registration.jsx';
+import User from './User.jsx';
 import logo from "./assets/New Logo1.png";
 import classroom from "./assets/classroom.png";
 
@@ -14,6 +15,7 @@ function Header(){
         <li><Link to={"/"}>Home</Link></li>
         <li><Link to={"/About"}>About</Link></li>
         <li><Link to={"/Registration"}>Registration</Link></li>
+        <li><Link to ={"/User"}>User</Link></li>
         <li className='dropdown'><Link to={"#"}>Department</Link>
         <div className='dropdown-content'>
           <Link>CSE</Link>

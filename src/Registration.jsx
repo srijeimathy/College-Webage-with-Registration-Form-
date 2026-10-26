@@ -4,7 +4,7 @@ import logo from "./assets/New Logo1.png";
 function Registration(){
     const[formData,setFormData]=useState({
         name:"",
-        lastname:"mathi",
+        lastname:"",
         dob:"",
         gender:"",
         email:"",
@@ -151,11 +151,28 @@ function Registration(){
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
 }
-    function handleSubmit(event){
+    async function handleSubmit(event){
         event.preventDefault();
         const isValid = validateForm();
         if(isValid){
-            setSubmitted(true);
+            try {
+                const response = await fetch("https://jsonplaceholder.typicode.com/users",{
+                    method:"POST",
+                    headers:{
+                        "content-type":"application/json"   
+                    },
+                    body:JSON.stringify(formData)
+                });
+                if(!response.ok){
+                    throw new Error("Failed to register student");
+                }
+                const data = await response.json();
+                console.log("Student Info:",data);
+                setSubmitted(true);    
+            } 
+            catch (error) {
+                console.log("Failed to add Student detail",error.message); 
+            }
         }
     }
     function handleReset(){

@@ -1,301 +1,421 @@
-
 /* =========================================
    GLOBAL RESET
 ========================================= */
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* =========================================
-     USER PAGE
-  ========================================= */
-  
-  .user-page {
-    min-height: 100vh;
-    padding: 35px 25px 50px;
-    background-color: #f1f5f9;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #334155;
-  }
-  
-  /* =========================================
-     MESSAGES
-  ========================================= */
-  
-  .user-page .success {
-    width: 95%;
-    max-width: 1300px;
-    margin: 0 auto 15px;
-    padding: 13px 16px;
-    background-color: #dcfce7;
-    color: #166534;
-    border: 1px solid #bbf7d0;
-    border-radius: 6px;
-    text-align: center;
-  }
-  
-  .user-page .error {
-    width: 95%;
-    max-width: 1300px;
-    margin: 0 auto 15px;
-    padding: 13px 16px;
-    background-color: #fee2e2;
-    color: #991b1b;
-    border: 1px solid #fecaca;
-    border-radius: 6px;
-    text-align: center;
-  }
-  
-  .user-page .loading {
-    margin: 20px auto;
-    text-align: center;
-    color: #2563eb;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  /* =========================================
-     SECTION HEADINGS
-  ========================================= */
-  
-  .user-page h2 {
-    width: 95%;
-    max-width: 1300px;
-    margin: 30px auto 22px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #dbeafe;
-    color: #0f2a5f;
-    font-size: 27px;
-    font-weight: 700;
-  }
-  
-  /* =========================================
-     REGISTERED STUDENT CARDS
-  ========================================= */
-  
-  .user-page .post-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
-    width: 95%;
-    max-width: 1300px;
-    margin: 0 auto 35px;
-  }
-  
-  /* =========================================
-     API USER CARDS
-  ========================================= */
-  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================================
+ USER PAGE
+========================================= */
+
+.user-page {
+  min-height: 100vh;
+  padding: 35px 25px 50px;
+  background-color: #f1f5f9;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #334155;
+}
+
+
+/* =========================================
+ MESSAGES
+========================================= */
+
+.user-page .success {
+  width: 95%;
+  max-width: 1300px;
+  margin: 0 auto 15px;
+  padding: 13px 16px;
+  background-color: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.user-page .error {
+  width: 95%;
+  max-width: 1300px;
+  margin: 0 auto 15px;
+  padding: 13px 16px;
+  background-color: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.user-page .loading {
+  margin: 20px auto;
+  text-align: center;
+  color: #2563eb;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+/* =========================================
+ UPDATE USER FORM
+========================================= */
+
+.user-page .edit-form {
+  width: 95%;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  padding: 25px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(15, 42, 95, 0.08);
+}
+
+.user-page .edit-form h2 {
+  width: 100%;
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #dbeafe;
+  color: #0f2a5f;
+  font-size: 24px;
+  text-align: center;
+}
+
+.user-page .edit-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+  color: #334155;
+}
+
+.user-page .edit-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #dbeafe;
+}
+
+.user-page .edit-form input::placeholder {
+  color: #94a3b8;
+}
+
+
+/* =========================================
+ PUT AND CANCEL BUTTONS
+========================================= */
+
+.user-page .put-button,
+.user-page .cancel-button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.user-page .put-button {
+  background-color: #16a34a;
+  margin-right: 10px;
+}
+
+.user-page .put-button:hover {
+  background-color: #15803d;
+  transform: translateY(-2px);
+}
+
+.user-page .cancel-button {
+  background-color: #64748b;
+}
+
+.user-page .cancel-button:hover {
+  background-color: #475569;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+ SECTION HEADINGS
+========================================= */
+
+.user-page h2 {
+  width: 95%;
+  max-width: 1300px;
+  margin: 30px auto 22px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #dbeafe;
+  color: #0f2a5f;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+ REGISTERED STUDENT CARDS
+========================================= */
+
+.user-page .post-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  width: 95%;
+  max-width: 1300px;
+  margin: 0 auto 35px;
+}
+
+
+/* =========================================
+ API USER CARDS
+========================================= */
+
+.user-page .posts-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  width: 95%;
+  max-width: 1300px;
+  margin: 25px auto;
+}
+
+
+/* =========================================
+ INDIVIDUAL CARD
+========================================= */
+
+.user-page .post-card {
+  min-width: 0;
+  padding: 24px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(15, 42, 95, 0.07);
+  overflow-wrap: anywhere;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-page .post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(15, 42, 95, 0.12);
+}
+
+
+/* =========================================
+ CARD ID
+========================================= */
+
+.user-page .post-id {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 11px;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+/* =========================================
+ CARD NAME
+========================================= */
+
+.user-page .post-card h3 {
+  margin-bottom: 16px;
+  color: #0f2a5f;
+  font-size: 19px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+ CARD DETAILS
+========================================= */
+
+.user-page .post-card p {
+  margin-bottom: 11px;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.user-page .post-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+ GET BUTTON
+========================================= */
+
+.user-page .get-button-area {
+  width: 95%;
+  max-width: 1300px;
+  margin: 20px auto 30px;
+  text-align: center;
+}
+
+.user-page .get-button {
+  display: block;
+  min-width: 150px;
+  margin: 25px auto;
+  padding: 13px 30px;
+  border: none;
+  border-radius: 7px;
+  background-color: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.user-page .get-button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.user-page .get-button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+
+/* =========================================
+ EDIT AND DELETE BUTTONS
+========================================= */
+
+.user-page .card-button {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.user-page .card-button button {
+  flex: 1;
+  min-width: 90px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+
+/* =========================================
+ EDIT BUTTON
+========================================= */
+
+.user-page .edit-button {
+  background-color: #f59e0b;
+}
+
+.user-page .edit-button:hover {
+  background-color: #d97706;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+ DELETE BUTTON
+========================================= */
+
+.user-page .delete-button {
+  background-color: #dc2626;
+}
+
+.user-page .delete-button:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+ KEYBOARD FOCUS
+========================================= */
+
+.user-page button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+ TABLET RESPONSIVENESS
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .user-page .post-container,
   .user-page .posts-container {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 22px;
-    width: 95%;
-    max-width: 1300px;
-    margin: 25px auto;
-  }
-  
-  /* =========================================
-     INDIVIDUAL CARD
-  ========================================= */
-  
-  .user-page .post-card {
-    min-width: 0;
-    padding: 24px;
-    background-color: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(15, 42, 95, 0.07);
-    overflow-wrap: anywhere;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .user-page .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 22px rgba(15, 42, 95, 0.12);
-  }
-  
-  /* =========================================
-     CARD ID
-  ========================================= */
-  
-  .user-page .post-id {
-    display: inline-block;
-    margin-bottom: 14px;
-    padding: 6px 11px;
-    background-color: #eff6ff;
-    color: #1d4ed8;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-  }
-  
-  /* =========================================
-     CARD NAME
-  ========================================= */
-  
-  .user-page .post-card h3 {
-    margin-bottom: 16px;
-    color: #0f2a5f;
-    font-size: 19px;
-    line-height: 1.4;
-    overflow-wrap: anywhere;
-  }
-  
-  /* =========================================
-     CARD DETAILS
-  ========================================= */
-  
-  .user-page .post-card p {
-    margin-bottom: 11px;
-    color: #475569;
-    font-size: 14px;
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-  }
-  
-  .user-page .post-card p:last-of-type {
-    margin-bottom: 0;
-  }
-  
-  /* =========================================
-     GET BUTTON AREA
-  ========================================= */
-  
-  .user-page .get-button-area {
-    width: 95%;
-    max-width: 1300px;
-    margin: 20px auto 30px;
-    text-align: center;
-  }
-  
-  /* GET button */
-  
-  .user-page .get-button {
-    display: block;
-    min-width: 150px;
-    margin: 25px auto;
-    padding: 13px 30px;
-    border: none;
-    border-radius: 7px;
-    background-color: #2563eb;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-  }
-  
-  .user-page .get-button:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-2px);
-  }
-  
-  .user-page .get-button:disabled {
-    background-color: #94a3b8;
-    cursor: not-allowed;
-    transform: none;
-  }
-  
-  /* =========================================
-     EDIT AND DELETE BUTTONS
-  ========================================= */
-  
-  .user-page .card-button {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 22px;
-  }
-  
-  .user-page .card-button button {
-    flex: 1;
-    min-width: 90px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    color: #ffffff;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-  }
-  
-  /* EDIT button */
-  
-  .user-page .edit-button {
-    background-color: #f59e0b;
-  }
-  
-  .user-page .edit-button:hover {
-    background-color: #d97706;
-    transform: translateY(-2px);
-  }
-  
-  /* DELETE button */
-  
-  .user-page .delete-button {
-    background-color: #dc2626;
-  }
-  
-  .user-page .delete-button:hover {
-    background-color: #b91c1c;
-    transform: translateY(-2px);
-  }
-  
-  /* Keyboard focus */
-  
-  .user-page button:focus-visible {
-    outline: 3px solid #93c5fd;
-    outline-offset: 3px;
-  }
-  
-  /* =========================================
-     TABLET RESPONSIVENESS
-  ========================================= */
-  
-  @media (max-width: 1000px) {
-    .user-page .post-container,
-    .user-page .posts-container {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
-  
-  /* =========================================
-     MOBILE RESPONSIVENESS
-  ========================================= */
-  
-  @media (max-width: 600px) {
-    .user-page {
+}
+
+
+/* =========================================
+ MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+
+  .user-page {
       padding: 25px 12px 35px;
-    }
-  
-    .user-page h2 {
+  }
+
+  .user-page h2 {
       width: 100%;
       font-size: 23px;
-    }
-  
-    .user-page .post-container,
-    .user-page .posts-container {
+  }
+
+  .user-page .post-container,
+  .user-page .posts-container {
       width: 100%;
       grid-template-columns: minmax(0, 1fr);
       gap: 16px;
-    }
-  
-    .user-page .post-card {
+  }
+
+  .user-page .post-card {
       padding: 20px;
-    }
-  
-    .user-page .get-button {
+  }
+
+  .user-page .get-button {
       width: 100%;
       max-width: 300px;
-    }
-  
-    .user-page .card-button button {
-      min-width: 0;
-    }
   }
-  
+
+  .user-page .card-button button {
+      min-width: 0;
+  }
+
+  /* Mobile Update Form */
+
+  .user-page .edit-form {
+      width: 100%;
+      padding: 20px;
+  }
+
+  .user-page .edit-form h2 {
+      font-size: 21px;
+  }
+
+  .user-page .put-button,
+  .user-page .cancel-button {
+      width: 100%;
+      margin: 5px 0;
+  }
+}

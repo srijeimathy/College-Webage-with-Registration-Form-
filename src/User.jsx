@@ -1,11 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./User.css";
 
 function User() {
     const url = "https://jsonplaceholder.typicode.com/users";
+
     const [data, Setdata] = useState([]);
+    const [formdata, setFormdata] = useState({
+        name: "",
+        lastname: "",
+        dob: "",
+        gender: "",
+        email: "",
+        mobile: "",
+        tenth: "",
+        tenthyear: "",
+        twelfth: "",
+        twelfthyear: ""
+    });
+
+    const [editid, SetEditid] = useState(null);
     const [loading, SetLoading] = useState(false);
-    const [error, SetError] = useState([]);
+    const [error, SetError] = useState("");
     const [message, SetMessage] = useState("");
     async function getuser() {
         try {
@@ -17,20 +32,66 @@ function User() {
                 throw new Error("Failed to get User");
             }
             const result = await response.json();
-            console.log("GET:", result);
+            console.log("User Detail:", result);
             Setdata(result);
         }
         catch (error) {
-            console.log("GET Error:", error);
+            console.log("User Detail Error:", error);
             SetError(error.message);
-
+        }
+        finally {
+            SetLoading(false);
+        }
+    }
+    async function edituser(id) {
+        try {
+            SetLoading(true);
+            SetError("");
+            SetMessage("");
+            const response = await fetch(`${url}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formdata)
+            });
+            if (!response.ok) {
+                throw new Error("Failed to Update User");
+            }
+            const result = await response.json();
+            console.log("PUT:", result);
+            Setdata((previousData) =>
+                previousData.map((user) =>
+                    user.id === id ? { ...user, ...result } : user
+                )
+            );
+            SetMessage("User Updated Successfully!");
+            SetEditid(null);
+            setFormdata({
+                name: "",
+                lastname: "",
+                dob: "",
+                gender: "",
+                email: "",
+                mobile: "",
+                tenth: "",
+                tenthyear: "",
+                twelfth: "",
+                twelfthyear: ""
+            });
+        }
+        catch (error) {
+            console.log("Edit User Error:", error);
+            SetError(error.message);
         }
         finally {
             SetLoading(false);
         }
     }
     async function deleteuser(id) {
-        const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+        const confirmDelete = window.confirm(
+            "Are you sure you want to delete this user?"
+        );
         if (!confirmDelete) {
             return;
         }
@@ -49,46 +110,10 @@ function User() {
             Setdata((previousData) =>
                 previousData.filter((user) => user.id !== id)
             );
-            SetMessage("User Deleted Sucessfully!");
+            SetMessage("User Deleted Successfully!");
         }
         catch (error) {
-            console.log("DELETE Error:", error);
-            SetError(error.message);
-        }
-        finally {
-            SetLoading(false);
-        }
-    }
-    async function edituser(id) {
-        try {
-            SetLoading(true);
-            SetError("");
-            SetMessage("");
-            const response = await fetch(`${url}/${id}`, {
-                method: "PUT",
-                headers: {
-                    "content-type": "application/json"
-                },
-                body: JSON.stringify(formdata)
-            });
-            if (!response.ok) {
-                throw new Error("Failed to Update User");
-            }
-            const result = await response.json();
-            console.log("PUT:", result);
-            Setdata((previousData) =>
-                previousData.map((user) => user.id === id ? {...user,...result} : user)
-            );
-            SetMessage(console.log("User Updated Sucessfully!"));
-            SetEditid(null);
-            setFormdata({
-                name:"",
-                username:"",
-                email:""
-            });
-        }
-        catch (error) {
-            console.log("PUT Error:", error);
+            console.log("Delete User Error:", error);
             SetError(error.message);
         }
         finally {
@@ -96,14 +121,20 @@ function User() {
         }
     }
     function handleEdit(user) {
+
         SetEditid(user.id);
         setFormdata({
-            name: user.name,
-            username: user.username,
-            email: user.email
+            name: user.name || "",
+            lastname: user.lastname || "",
+            dob: user.dob || "",
+            gender: user.gender || "",
+            email: user.email || "",
+            mobile: user.mobile || "",
+            tenth: user.tenth || "",
+            tenthyear: user.tenthyear || "",
+            twelfth: user.twelfth || "",
+            twelfthyear: user.twelfthyear || ""
         });
-        SetShowPost(true);
-        SetShowGet(false);
         SetMessage("");
         SetError("");
         window.scrollTo({
@@ -115,53 +146,84 @@ function User() {
         SetEditid(null);
         setFormdata({
             name: "",
-            username: "",
-            email: ""
+            lastname: "",
+            dob: "",
+            gender: "",
+            email: "",
+            mobile: "",
+            tenth: "",
+            tenthyear: "",
+            twelfth: "",
+            twelfthyear: ""
+        });
+        SetMessage("");
+        SetError("");
+    }
+    function handleChange(event) {
+        const { id, value } = event.target;
+        setFormdata({
+            ...formdata,
+            [id]: value
         });
     }
+    useEffect(()=>{
+        getuser();  
+    },[]);
     return (
-
         <div className="user-page">
             {message && (
-                <div className="success">{message}</div>
+                <div className="success">
+                    {message}
+                </div>
             )}
             {error && (
-                <div className="error">{error}</div>
+                <div className="error">
+                    {error}
+                </div>
             )}
             {loading && (
-                <div className="loading">Loading....</div>
+                <div className="loading">
+                    Loading....
+                </div>
             )}
-            <h2>Registered Student</h2>
-            <div className="post-container">
-                {students.map((student) => (
-                    <div className="post-card" key={student.id}>
-                        <div className="post-id">
-                            Student Id:{student.id}
-                        </div>
-                        <h3>{student.name} {student.lastname}</h3>
-                        <p>Date of Birth: {student.dob}</p>
-                        <p>Gender: {student.gender}</p>
-                        <p>Email Id: {student.email}</p>
-                        <p>Mobile Number: {student.mobile}</p>
-                        <p>10th%: {student.tenth}%</p>
-                        <p>10th Year of Passing: {student.tenthyear}</p>
-                        <p>12th%: {student.twelfth}%</p>
-                        <p>12th Year of Passing: {student.twelfthyear}</p>
-                        <div className="card-button">
-                            <button className="edit-button" onClick={() => handleEdit(student)}>EDIT</button>
-                            <button className="delete-button" onClick={() => deletestudent(student.id)}>DELETE</button>
-                        </div>
-                    </div>
-                ))}
-            </div>
-            <button className="get-button" onClick={getuser}>GET</button>
+            {editid && (
+                <div className="edit-form">
+                    <h2>Update User</h2>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter Name"
+                        value={formdata.name}
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter Username"
+                        value={formdata.username}
+                        onChange={handleChange}
+                    />
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter Email"
+                        value={formdata.email}
+                        onChange={handleChange}
+                    />
+                    <button className="put-button" onClick={() => edituser(editid)}>PUT</button>
+                    <button className="cancel-button" onClick={handlecancel}>Cancel</button>
+                </div>
+            )}
+            {/* <button className="get-button" onClick={getuser}>GET</button> */}
             <div className="posts-container">
                 {data.map((users) => (
                     <div className="post-card" key={users.id}>
-                        <div className="post-id">User Id:{users.id}</div>
+                        <div className="post-id">
+                            User Id: {users.id}
+                        </div>
                         <h3>{users.name}</h3>
-                        <p>Username:{users.username}</p>
-                        <p>Email Id:{users.email}</p>
+                        <p>Username: {users.username}</p>
+                        <p>Email Id: {users.email}</p>
                         <div className="card-button">
                             <button className="edit-button" onClick={() => handleEdit(users)}>EDIT</button>
                             <button className="delete-button" onClick={() => deleteuser(users.id)}>DELETE</button>
@@ -169,7 +231,6 @@ function User() {
                     </div>
                 ))}
             </div>
-
         </div>
     );
 }

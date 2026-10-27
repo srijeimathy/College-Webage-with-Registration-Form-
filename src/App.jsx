@@ -33,7 +33,7 @@ function Home(){
   return(
     <div className='welcome-section'>
       <h1><i id="school" class="material-icons">school</i> Welcome to College </h1>
-      <p>Learn...Innovate<i id="bulb" class="material-icons">lightbulb_outline</i>...Excel</p>
+      <p>Learn...Innovate<i id="bulb" className="material-icons">lightbulb_outline</i>...Excel</p>
     </div>
   )
 }

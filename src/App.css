@@ -1,7 +1,20 @@
-*{
+
+/* ========================================
+   1. GLOBAL STYLES
+======================================== */
+
+* {
   box-sizing: border-box;
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 25px;
+}
+
 body {
+  margin: 0;
+  padding: 0;
   font-family: Georgia, serif;
   background-image: url("./assets/Index-backround.png");
   background-attachment: fixed;
@@ -9,202 +22,291 @@ body {
   background-position: center;
   background-size: cover;
   min-height: 100vh;
+  color: #333;
 }
-header{
-  background-color:#ffffff;
+
+#root {
+  min-height: 100vh;
+}
+
+/* ========================================
+   2. HEADER
+======================================== */
+
+header {
+  width: 100%;
+  min-height: 95px;
+  background-color: #ffffff;
   display: flex;
-  align-items:center;
-  padding:10px 30px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 30px;
   position: sticky;
   top: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 1000;
 }
-header img{
+
+header img {
   width: 200px;
   height: 75px;
   object-fit: contain;
+  flex-shrink: 0;
 }
-.topnav{
-  display:flex;
+
+/* ========================================
+   3. TOP NAVIGATION
+======================================== */
+
+.topnav {
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   list-style-type: none;
-  margin:0 0 0 auto;
+  margin: 0 0 0 auto;
   padding: 0;
 }
-.topnav li{
+
+.topnav li {
   position: relative;
 }
-.topnav li a{
-  display:block;
-  color: #333;
+
+.topnav li a {
+  display: block;
+  color: #333333;
   padding: 15px 18px;
   text-decoration: none;
-  font-weight:bold;
+  font-weight: bold;
   cursor: pointer;
-  transition:
-  background-color 0.3s ease,
-  color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.topnav li a:hover{
+
+.topnav li a:hover,
+.topnav li a:focus-visible {
   background-color: #1e3a8a;
-  color: white;
+  color: #ffffff;
   border-radius: 6px;
 }
-.dropdown-content{
+
+/* ========================================
+   4. DEPARTMENT DROPDOWN
+======================================== */
+
+.dropdown-content {
   display: none;
-  position:absolute;
-  top:calc(100% + 2px);
+  position: absolute;
+  top: 100%;
   left: 0;
   min-width: 210px;
+  background-color: #ffffff;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 0 0 8px 8px;
-  background-color:white;
 }
-.dropdown-content a{
+
+.dropdown-content a {
   display: block;
   padding: 12px 16px !important;
   font-size: 15px;
-  color: #333 !important;
-  background-color: white;
+  color: #333333 !important;
+  background-color: #ffffff;
+  white-space: nowrap;
 }
-.dropdown-content a:hover{
+
+.dropdown-content a:hover,
+.dropdown-content a:focus-visible {
   background-color: #e8eefc !important;
   color: #1e3a8a !important;
-  border-radius:0 !important;
+  border-radius: 0 !important;
 }
-.dropdown:hover .dropdown-content{
-  display:block;
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  display: block;
 }
+
+/* ========================================
+   5. HOME PAGE
+======================================== */
+
 .welcome-section {
-  min-height:500px;
-  display: flex; 
-  flex-direction: column; 
+  min-height: calc(100vh - 95px);
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  padding: 40px 20px;
 }
+
 .welcome-section h1 {
   color: #1e3a8a;
-  font-size: 52px; 
-  margin-bottom: 5px; 
-  letter-spacing: 1px; 
+  font-size: clamp(32px, 5vw, 52px);
+  margin: 0 0 5px;
+  letter-spacing: 1px;
+  line-height: 1.4;
 }
-#school { 
-  font-size: 75px; 
-  margin-right: 12px; 
-  vertical-align: middle; 
+
+#school {
+  font-size: clamp(42px, 6vw, 75px);
+  margin-right: 12px;
+  vertical-align: middle;
 }
-.welcome-section p { 
+
+.welcome-section p {
   color: #1e3a8a;
-  font-size: 24px;
+  font-size: clamp(18px, 3vw, 24px);
   font-weight: 500;
-  letter-spacing: 2px; 
+  letter-spacing: 2px;
+  margin-top: 10px;
 }
-#bulb{
-  color: black;
+
+#bulb {
+  color: #e2a900;
   font-size: 28px;
   vertical-align: middle;
   margin: 0 8px;
 }
-.hero{
+
+/* ========================================
+   6. ABOUT PAGE - HERO SECTION
+======================================== */
+
+.hero {
   min-height: 420px;
-  background: 
-  linear-gradient(
-      rgba(13,49,105,0.80),
-      rgba(27,79,145,0.78)
-  ),url("./assets/About us.png");
+  background:
+    linear-gradient(
+      rgba(13, 49, 105, 0.80),
+      rgba(27, 79, 145, 0.78)
+    ),
+    url("./assets/About us.png");
+
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
+
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
+  color: #ffffff;
   padding: 60px 20px;
 }
-.hero-content{
+
+.hero-content {
+  width: 100%;
   max-width: 850px;
 }
-.hero h1{
-  font-size: 52px;
-  margin-bottom: 15px;
+
+.hero h1 {
+  font-size: clamp(34px, 5vw, 52px);
+  margin: 0 0 15px;
   letter-spacing: 1px;
+  line-height: 1.3;
 }
-.hero p{
+
+.hero p {
   font-size: 20px;
-  max-width: 1000px;
-  margin: auto;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
 }
-.hero-button{
+
+.hero-button {
   display: inline-block;
   margin-top: 25px;
   padding: 13px 28px;
-  background-color: white;
+  background-color: #ffffff;
   color: #174ea6;
   text-decoration: none;
   border-radius: 25px;
   font-weight: bold;
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.hero-button:hover{
+
+.hero-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
-.container{
-  width:88%;
-  max-width:1200px;
-  margin: auto;
+
+/* ========================================
+   7. COMMON CONTAINER
+======================================== */
+
+.container {
+  width: 88%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-.about-section{
+
+/* ========================================
+   8. ABOUT US SECTION
+======================================== */
+
+.about-section {
   padding: 60px 0;
-  background-color: white;
+  background-color: #ffffff;
 }
-.section-title{
+
+.section-title {
   text-align: center;
   color: #174ea6;
   font-size: 34px;
-  margin-bottom: 15px;
+  line-height: 1.4;
+  margin: 0 0 15px;
 }
-.title-line{
+
+.title-line {
   width: 70px;
   height: 4px;
   background-color: #e2a900;
   margin: 0 auto 30px;
   border-radius: 5px;
-  color: #555;
 }
-.about-text{
+
+.about-text {
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto 20px;
   text-align: center;
   font-size: 17px;
-
+  line-height: 1.9;
+  color: #555555;
 }
-.cards-section{
+
+/* ========================================
+   9. VISION AND MISSION SECTION
+======================================== */
+
+.cards-section {
   padding: 65px 0;
   background-color: #f5f7fb;
 }
-.cards{
+
+.cards {
   display: flex;
+  align-items: stretch;
   gap: 30px;
   margin-top: 35px;
 }
-.card{
+
+.card {
   flex: 1;
-  background-color: white;
+  min-width: 0;
+  background-color: #ffffff;
   padding: 35px;
   border-radius: 12px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card:hover{
-  transform:translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
 
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
 }
-.card-icon{
+
+.card-icon {
   width: 65px;
   height: 65px;
   background-color: #e8f0fe;
@@ -216,63 +318,272 @@ header img{
   margin-bottom: 20px;
   font-size: 30px;
 }
-.card h2{
+
+.card h2 {
   color: #174ea6;
-  margin-bottom: 15px;
+  font-size: 25px;
+  margin: 0 0 15px;
 }
-.card p{
-  color: #555;
+
+.card p {
+  color: #555555;
   text-align: justify;
+  line-height: 1.8;
 }
-.card ul{
-  color: #555;
-  padding-left: 20px;
+
+.card ul {
+  color: #555555;
+  padding-left: 22px;
+  line-height: 1.8;
 }
-.card li{
+
+.card li {
   margin-bottom: 9px;
 }
-.why-section{
-  background-color: white;
-  padding: 65px 0px;
+
+/* ========================================
+   10. WHY CHOOSE DSA SECTION
+======================================== */
+
+.why-section {
+  background-color: #ffffff;
+  padding: 65px 0;
 }
-.why-grid{
+
+.why-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 25px;
   margin-top: 35px;
 }
-.why-box{
+
+.why-box {
   padding: 25px;
   border: 1px solid #e1e5ec;
   border-radius: 10px;
+  background-color: #ffffff;
   text-align: center;
-  transition: 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
-.why-box:hover{
+
+.why-box:hover {
   border-color: #174ea6;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
-.why-box h3{
+
+.why-box h3 {
   color: #174ea6;
-  margin-bottom: 10px;
-}
-.why-box p{
-  color: #666;
+  margin: 0 0 10px;
+  font-size: 20px;
 }
 
-@media print {
-  header {
-      display: none !important;
-  }
-
-  .details-buttons {
-      display: none !important;
-  }
+.why-box p {
+  color: #666666;
+  line-height: 1.7;
+  margin-bottom: 0;
 }
+
+/* ========================================
+   11. FOOTER
+======================================== */
+
 footer {
   background-color: #0f2a5f;
-  color: white;
+  color: #ffffff;
   text-align: center;
-  padding: 20px;
+  padding: 25px 15px;
   font-size: 14px;
+}
+
+footer h2 {
+  margin: 0 0 10px;
+  font-size: 24px;
+}
+
+footer p {
+  margin: 8px 0;
+  line-height: 1.6;
+}
+
+/* ========================================
+   12. BACK TO TOP BUTTON
+======================================== */
+
+  #topButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: auto;
+    height: auto;
+    padding: 0%;
+    border:none;
+    border-radius: 0%;
+    background: transparent;
+    color: #174ea6;
+    font-size: 25px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow:none;
+    z-index: 999;
+  }
+
+  #topButton:hover {
+    transform: translateY(-3px);
+  }
+
+/* ========================================
+   13. PRINT STYLES
+======================================== */
+
+@media print {
+  header,
+  #topButton,
+  .details-buttons {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff;
+  }
+}
+
+/* ========================================
+   14. TABLET RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 900px) {
+  header {
+    padding: 10px 20px;
+    gap: 10px;
+  }
+
+  header img {
+    width: 150px;
+    height: 65px;
+  }
+
+  .topnav li a {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .cards {
+    gap: 20px;
+  }
+
+  .card {
+    padding: 25px;
+  }
+
+  .why-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ========================================
+   15. MOBILE RESPONSIVE DESIGN
+======================================== */
+
+@media (max-width: 600px) {
+  header {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 5px;
+  }
+
+  header img {
+    width: 170px;
+    height: 65px;
+  }
+
+  .topnav {
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+  }
+
+  .topnav li a {
+    padding: 10px 9px;
+    font-size: 13px;
+  }
+
+  .dropdown-content {
+    min-width: 150px;
+  }
+
+  .welcome-section {
+    min-height: 70vh;
+    padding: 30px 15px;
+  }
+
+  .welcome-section h1 {
+    line-height: 1.4;
+  }
+
+  .hero {
+    min-height: 350px;
+    padding: 45px 18px;
+  }
+
+  .hero p {
+    font-size: 17px;
+  }
+
+  .hero-button {
+    padding: 12px 22px;
+  }
+
+  .container {
+    width: 92%;
+  }
+
+  .about-section,
+  .cards-section,
+  .why-section {
+    padding: 40px 0;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .about-text {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  #topButton {
+    width: 42px;
+    height: 42px;
+    bottom: 15px;
+    right: 15px;
+    font-size: 19px;
+  }
 }
